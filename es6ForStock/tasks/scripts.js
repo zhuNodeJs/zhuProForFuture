@@ -24,7 +24,7 @@ gulp.task("scripts", () => {
                 loaders: [
                     {
                         test:/\.js$/,
-                        loader:"babel"
+                        loader:"babel-loader"
                     }
                 ]
             }
