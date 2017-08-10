@@ -94,8 +94,5 @@
 
     console.log('test-1', /𠮷{2}/.test('𠮷𠮷')); // false
     console.log('test-2', /𠮷{2}/u.test('𠮷𠮷')); // true
-}
 
-{
-    
 }
