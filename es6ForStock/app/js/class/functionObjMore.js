@@ -12,8 +12,10 @@
         console.log('作用域', x, y);
     }
     test2('kill');  
+    test2(); // undefined undefined
 }
 {
+    // rest后不可有其他的参数
     function test3(...arg) {
         for(let v of arg) {
             console.log('rest', v);
@@ -35,6 +37,7 @@
 }
 
 {
+    // 遇到函数的连环调用，可以考虑尾调用，优化性能
     function tail(x) {
         console.log('tail', x);
     }

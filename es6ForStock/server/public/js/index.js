@@ -86,82 +86,112 @@ __webpack_require__(2);
 "use strict";
 
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+// Map与Array的对比, Set与Array的对比
 {
-    // 简洁表示法
-    var o = 1;
-    var k = 2;
-    var es5 = {
-        o: o,
-        k: k
-    };
-    var es6 = {
-        o: o,
-        k: k
-    };
-    console.log(es5, es6);
+    // 数据结构的横向对比：增，查， 改，删
+    var map = new Map();
+    var array = [];
 
-    var es5_method = {
-        hello: function hello() {
-            console.log('hello');
-        }
-    };
-    var es6_method = {
-        hello: function hello() {
-            console.log('hello');
-        }
-    };
-    console.log(es5_method.hello(), es6_method.hello());
+    // 增
+    map.set('t', 1);
+    array.push({ "t": 1 });
+
+    console.info(map, array);
+
+    // 查
+    var map_exist = map.has('t');
+    var array_exist = array.find(function (item) {
+        return item.t;
+    });
+    console.log(map_exist, array_exist);
+
+    // 改
+    map.set('t', 2);
+    array.forEach(function (item) {
+        return item.t ? item.t = 2 : '';
+    });
+    console.log(map, array);
+
+    // 删
+    map.delete('t');
+    var index = array.findIndex(function (item) {
+        return item.t;
+    });
+    array.splice(index, 1);
+    console.log(map, array);
 }
 
 {
-    // 属性表达式
-    var a = 'b';
-    var es5_obj = {
-        a: 'c',
-        b: 'c'
-    };
-    var es6_obj = _defineProperty({}, a, 'c');
-    console.log(es5_obj, es6_obj);
+    // set和Array的比较
+    var set = new Set();
+    var _array = [];
+
+    // 增
+    set.add({ "t": 1 });
+    _array.push({ "t": 1 });
+    console.log(set, _array);
+
+    // 查
+    var set_exist = set.has({ "t": 1 }); //注意此时的false，因为对象的存在的是地址的引用
+    var _array_exist = _array.find(function (item) {
+        return item.t;
+    });
+    console.log(set_exist, _array_exist);
+
+    // 改
+    set.forEach(function (item) {
+        return item.t ? item.t = 2 : '';
+    });
+    _array.forEach(function (item) {
+        return item.t ? item.t *= 2 : '';
+    });
+    console.log(set, _array);
+
+    // 删1
+    set.forEach(function (item) {
+        return item.t ? set.delete(item) : '';
+    });
+    var _index = _array.findIndex(function (item) {
+        return item.t;
+    });
+    _array.splice(_index, 1);
+    console.log(set, _array);
 }
-
+// Map与Object的对比，Set和Object的对比
 {
-    // 新增
-    console.log('字符串', Object.is(NaN, NaN), 'abc' === 'abc');
-    console.log('字符串', Object.is('abc', 'abc'), 'abc' === 'abc');
-    console.log('数组', Object.is([], []), [] === []);
-    console.log('拷贝', Object.assign({ a: 'a' }, { b: 'b' }));
+    // map, set, object的对比
+    var item = { "t": 1 };
+    var _map = new Map();
+    var _set = new Set();
+    var obj = {};
 
-    var test = { k: 132, o: 456 };
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
+    // 增
+    _map.set('t', 1);
+    _set.add(item);
+    obj['t'] = 1;
 
-    try {
-        for (var _iterator = Object.entries(test)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var _step$value = _slicedToArray(_step.value, 2),
-                key = _step$value[0],
-                value = _step$value[1];
+    console.log(_map, _set, obj);
 
-            console.log([key, value]);
-        }
-    } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-            }
-        } finally {
-            if (_didIteratorError) {
-                throw _iteratorError;
-            }
-        }
-    }
+    // 查
+    console.info({
+        map_exist: _map.has('t'),
+        set_exist: _set.has(item),
+        obj_exist: 't' in obj
+    });
+
+    // 改
+    _map.set('t', 2);
+    _set.forEach(function (item) {
+        return item.t ? item.t = 2 : '';
+    });
+    obj['t'] = 2;
+    console.log(_map, _set, obj);
+
+    // 删
+    _map.delete('t');
+    _set.delete(item);
+    delete obj['t'];
+    console.log(_map, _set, obj);
 }
 
 /***/ })
