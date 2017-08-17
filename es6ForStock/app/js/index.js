@@ -9,4 +9,8 @@
 // import './class/setMapJiao'; // set,map的比较
 // import './class/proxyAndReflect'; // proxy和Reflect的比较
 // import './class/classObj'; // 类和对象
-import './class/PromiseObj'; // Promise
+// import './class/PromiseObj'; // Promise
+// import './class/iteratorObj'; // iterator
+// import 'babel-polyfill';
+// import './class/GeneratorObj'; // Generator
+import './class/DecoratorObj'; // Decorator函数
