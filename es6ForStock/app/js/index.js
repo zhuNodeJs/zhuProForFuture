@@ -13,4 +13,9 @@
 // import './class/iteratorObj'; // iterator
 // import 'babel-polyfill';
 // import './class/GeneratorObj'; // Generator
-import './class/DecoratorObj'; // Decorator函数
+// import './class/DecoratorObj'; // Decorator函数
+import lesson18 from './class/Module'; // 模块化
+
+console.log(lesson18.A);
+console.log(lesson18.test());
+console.log((new lesson18.Hello).test());
