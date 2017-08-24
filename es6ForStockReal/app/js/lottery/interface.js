@@ -8,7 +8,7 @@ class Interface {
         let self = this;
         return new Promise((resolve, reject) => {
             $.ajax({
-                url:'/get/Omit',
+                url:'/get/omit',
                 data: {
                     issue: issue
                 },

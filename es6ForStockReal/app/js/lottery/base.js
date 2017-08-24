@@ -43,14 +43,11 @@ class Base {
         }) 
     }
 
-     /**
-         * [initNumber 初始化号码]
-         * @return [type] [description]
-         */
+    
 
     initNumber() {
         for(let i = 1; i < 12; i++) {
-            this.initNumber.add((""+i).padStart(2, '0'));            
+            this.number.add((""+i).padStart(2,'0'));            
         }
     }     
     /**
@@ -164,6 +161,20 @@ class Base {
     }
 
     /**
+     * addCode [添加号码]
+     */
+
+    addCode() {
+        let self = this;
+        let $active = $('.boll-list .btn-boll-active').text().match(/\d{2}/g);
+        let active = $active ? $active : 0;
+        let count = self.computeCount(active, self.cur_play);
+        if(count) {
+            self.addCodeItem($active.join(' '), self.cur_play, self.play_list.get(self.cur_play).name, count);
+        }
+    }
+
+    /**
      * [addCodeItem 添加单次号码]
      * @params {[type]} code [description] 
      * @params {[type]} type [description]
@@ -192,8 +203,8 @@ class Base {
     getCount() {
         let self = this;
         let active = $('.boll-list .btn-boll-active').length;
-        let count = self.computeCount(active, self, cur_play);
-        let range = self.computeBonus(active, self, cur_play);
+        let count = self.computeCount(active, self.cur_play);
+        let range = self.computeBonus(active, self.cur_play);
         let money = count*2;
         let win1 = range[0] - money;
         let win2 = range[1] - money;
@@ -230,7 +241,7 @@ class Base {
     getTotal() {
         let count = 0;
         $('.codeList li').each(function(index, item) {
-            count += $(item).attr(count)*1;
+            count += $(item).attr("count")*1;
         })
         $("#count").text(count);
         $("#money").text(count*2);

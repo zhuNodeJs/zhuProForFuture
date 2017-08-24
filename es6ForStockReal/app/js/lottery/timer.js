@@ -3,7 +3,7 @@ class Timer {
         // end表示结束时间, update表示更新的回调函数, handle表示时间结束后触发的函数
         const now = new Date().getTime();
         const self = this;
-        if(now-end >= 0) {
+        if(now-end > 0) {
             handle.call(self);
         }else {
             let last_time = end - now;
